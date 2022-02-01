@@ -1,18 +1,18 @@
 import java.io.File;
 import java.io.FileOutputStream;
 
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class WorkbookWrite {
 
-	private XSSFWorkbook workbook;
+	private HSSFWorkbook workbook;
 
 	public WorkbookWrite() {
 
-		workbook = new XSSFWorkbook();
+		workbook = new HSSFWorkbook();
 	}
 
-	public XSSFWorkbook getWorkbook() {
+	public HSSFWorkbook getWorkbook() {
 		return this.workbook;
 	}
 
@@ -21,6 +21,7 @@ public class WorkbookWrite {
 			FileOutputStream out = new FileOutputStream(new File(fileName));
 			this.workbook.write(out);
 			out.close();
+			workbook.close();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

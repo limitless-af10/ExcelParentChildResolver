@@ -50,11 +50,10 @@ public class ParentChildResolver {
 	}
 
 	public static boolean isChild(Row nextRow) {
-		Cell cell = nextRow.getCell(0);
-		if (cell.getCellType() == CellType.STRING && cell.getStringCellValue() == "") {
+		Cell cell = nextRow.getCell(0, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+		if (cell.getCellType() == CellType.STRING && cell.getStringCellValue().length() == 0) {
 			return true;
 		}
-
 		return false;
 	}
 
@@ -79,7 +78,7 @@ public class ParentChildResolver {
 			switch (cell.getCellType()) {
 			case STRING:
 				String temp = cell.getStringCellValue();
-				if (temp == "") {
+				if (temp.length() == 0) {
 					continue;
 				}
 				row.createCell(column_number++).setCellValue((String) temp);
@@ -101,7 +100,7 @@ public class ParentChildResolver {
 			switch (cell.getCellType()) {
 			case STRING:
 				String cellValue_s = cell.getStringCellValue();
-				if (cellValue_s != "" || column_number < ParentColumns) {
+				if (cellValue_s.length() != 0 || column_number < ParentColumns) {
 					parentRowData.add(cell.getStringCellValue());
 					column_number++;
 				}

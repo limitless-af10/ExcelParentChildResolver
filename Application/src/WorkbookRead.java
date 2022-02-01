@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 
 public class WorkbookRead {
@@ -14,7 +14,7 @@ public class WorkbookRead {
 
 	public WorkbookRead(String filePath) throws IOException {
 		inputStream = new FileInputStream(new File(filePath));
-		workbook = new XSSFWorkbook(inputStream);
+		workbook = new HSSFWorkbook(inputStream);
 
 	}
 
